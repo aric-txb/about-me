@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me ｜ 田学博</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #1d1d1f;
+            --bg-card: rgba(29, 29, 31, 0.8);
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --accent: #0a84ff;
+            --accent-hover: #409cff;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAV ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            background: rgba(0, 0, 0, 0.72);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 52px;
+        }
+
+        .nav-logo {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(10, 132, 255, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 50%, rgba(147, 51, 234, 0.06) 0%, transparent 50%);
+            animation: ambientGlow 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes ambientGlow {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-5%, 3%) rotate(3deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-emoji {
+            font-size: 80px;
+            margin-bottom: 24px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-greeting {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-name {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #f5f5f7 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .hero-slogan {
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 20px auto 0;
+            font-style: italic;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-hint svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-secondary);
+            opacity: 0.4;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ========== SECTIONS ========== */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 120px 24px;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 60px;
+        }
+
+        /* ========== ABOUT ========== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-avatar {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            margin: 0 auto;
+            overflow: hidden;
+            box-shadow: 0 0 80px rgba(102, 126, 234, 0.3);
+        }
+
+        .about-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: baseline;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 16px;
+        }
+
+        .info-list .label {
+            color: var(--text-secondary);
+            min-width: 80px;
+            font-size: 14px;
+        }
+
+        .info-list .value {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* ========== PROJECTS ========== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .project-cover {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+
+        .project-cover.cover-1 { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+        .project-cover.cover-2 { background: linear-gradient(135deg, #0f3460, #16213e); }
+
+        .project-info {
+            padding: 28px;
+        }
+
+        .project-info .period {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .project-info h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .project-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-info ul li {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .project-info ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* ========== HOBBIES ========== */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .hobby-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 28px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .hobby-icon {
+            font-size: 56px;
+            margin-bottom: 16px;
+        }
+
+        .hobby-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .hobby-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .cooking-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .cooking-gallery img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .cooking-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+            display: block;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .contact-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .contact-card h4 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .contact-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            text-align: center;
+            padding: 60px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ========== ANIMATIONS ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-avatar {
+                width: 200px;
+                height: 200px;
+                font-size: 80px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <div class="nav-logo">田学博</div>
+        <div class="nav-links">
+            <a href="#about">关于</a>
+            <a href="#projects">项目</a>
+            <a href="#hobbies">爱好</a>
+            <a href="#contact">联系</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-emoji">🎍</div>
+        <h1 class="hero-name">田学博</h1>
+        <div class="hero-title">一位热爱 coding 同样热爱 cooking 的男妈妈（ESFJ）</div>
+        <p class="hero-slogan">坚信好代码和好料理一样，都需要清晰的逻辑与用心的温度。</p>
+    </div>
+    <div class="scroll-hint">
+        <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="fade-in">
+        <h2 class="section-title">🌟 个人简介</h2>
+    </div>
+    <div class="about-grid fade-in">
+        <div class="about-avatar"><img src="avatar.jpg" alt="田学博"></div>
+        <ul class="info-list">
+            <li><span class="label">姓名</span><span class="value">田学博</span></li>
+            <li><span class="label">性别</span><span class="value">男</span></li>
+            <li><span class="label">籍贯</span><span class="value">甘肃张掖</span></li>
+            <li><span class="label">MBTI</span><span class="value">ESFJ</span></li>
+            <li><span class="label">生日</span><span class="value">1997年5月4日</span></li>
+            <li><span class="label">学历</span><span class="value">硕士</span></li>
+            <li><span class="label">学校</span><span class="value">同济大学 - 计算机科学与技术</span></li>
+            <li><span class="label">手机</span><span class="value">19145648656（微信同号）</span></li>
+            <li><span class="label">部门</span><span class="value">汽车部 · 自动驾驶与机器人部 · 端到端算法与功能部 · 数据算法 · 真值数据算法</span></li>
+        </ul>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="fade-in">
+        <h2 class="section-title">📁 项目经历</h2>
+    </div>
+    <div class="projects-grid">
+        <div class="project-card fade-in">
+            <div class="project-cover cover-1">🚗</div>
+            <div class="project-info">
+                <div class="period">2022 — 2024</div>
+                <h3>车端感知后融合</h3>
+                <ul>
+                    <li>从 0-1 设计并搭建 L2 辅助驾驶车端后融合模块</li>
+                    <li>迭代优化并交付用户</li>
+                </ul>
+            </div>
+        </div>
+        <div class="project-card fade-in">
+            <div class="project-cover cover-2">🤖</div>
+            <div class="project-info">
+                <div class="period">2025 — 2026</div>
+                <h3>Autolabel OD/LD 优化交付</h3>
+                <ul>
+                    <li>主导 Autolabel OD 重构优化，有效提升 OD 数据交付质量</li>
+                    <li>推动 Autolabel OD 数据在联合训练中的使用，为自驾车端模型赋能</li>
+                    <li>支持 Autolabel LD 数据交付</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOBBIES -->
+<section id="hobbies">
+    <div class="fade-in">
+        <h2 class="section-title">📖 生活爱好</h2>
+    </div>
+    <div class="hobbies-grid">
+        <div class="hobby-card fade-in">
+            <div class="hobby-icon">🍳</div>
+            <h3>烹饪</h3>
+            <p>好代码和好料理，都需要清晰的逻辑与用心的温度</p>
+            <div class="cooking-gallery">
+                <img src="photos/cooking1.jpg" alt="美食1">
+                <img src="photos/cooking2.jpg" alt="美食2">
+                <img src="photos/cooking3.jpg" alt="美食3">
+            </div>
+        </div>
+        <div class="hobby-card fade-in">
+            <div class="hobby-icon">🪴</div>
+            <h3>绿植</h3>
+            <p>在代码的世界之外，种一片绿色的宁静</p>
+            <div class="cooking-gallery">
+                <img src="photos/plant1.jpg" alt="绿植1">
+                <img src="photos/plant2.jpg" alt="绿植2">
+                <img src="photos/plant3.jpg" alt="绿植3">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="fade-in">
+        <h2 class="section-title">联系我</h2>
+    </div>
+    <div class="contact-cards fade-in">
+        <a class="contact-card" href="tel:19145648656">
+            <div class="contact-icon">📱</div>
+            <h4>手机</h4>
+            <p>19145648656</p>
+        </a>
+        <a class="contact-card" href="#">
+            <div class="contact-icon">💬</div>
+            <h4>微信</h4>
+            <p>19145648656</p>
+        </a>
+        <div class="contact-card">
+            <div class="contact-icon">🏢</div>
+            <h4>部门</h4>
+            <p>端到端算法与功能部</p>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <h4>坐标</h4>
+            <p>上海</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 田学博 · 坚信好代码和好料理一样，都需要清晰的逻辑与用心的温度</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

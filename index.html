@@ -718,6 +718,57 @@
         }
 
 
+
+        /* ========== WORD CLOUD ========== */
+        .wordcloud {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .wc-tag {
+            position: absolute;
+            left: var(--x);
+            top: var(--y);
+            padding: 8px 18px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--text-secondary);
+            font-weight: 400;
+            white-space: nowrap;
+            cursor: default;
+            transition: all 0.3s ease;
+            animation: wcFloat 4s ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+
+        .wc-tag:hover {
+            color: var(--accent);
+            border-color: rgba(10, 132, 255, 0.3);
+            transform: scale(1.08);
+            background: rgba(10, 132, 255, 0.06);
+        }
+
+        .wc-s { font-size: 14px; }
+        .wc-m { font-size: 17px; }
+        .wc-l { font-size: 21px; font-weight: 500; color: var(--text-primary); }
+
+        @keyframes wcFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @media (max-width: 768px) {
+            .wordcloud { height: 320px; }
+            .wc-s { font-size: 12px; padding: 6px 12px; }
+            .wc-m { font-size: 14px; padding: 6px 14px; }
+            .wc-l { font-size: 17px; padding: 8px 16px; }
+        }
+
         /* ========== PRESS FEEDBACK ========== */
         .skill-card:active,
         .trait-item:active,
@@ -874,23 +925,17 @@
     <div class="fade-in">
         <h2 class="section-title">💡 我的工作方式</h2>
     </div>
-    <div class="values-list fade-in">
-        <div class="value-row">
-            <span class="value-num">01</span>
-            <p>再复杂的事也能拆成几件简单的事</p>
-        </div>
-        <div class="value-row">
-            <span class="value-num">02</span>
-            <p>不接受"就这样用"，每层为什么这样都要搞明白</p>
-        </div>
-        <div class="value-row">
-            <span class="value-num">03</span>
-            <p>95 分很香，但能先跑起来更重要</p>
-        </div>
-        <div class="value-row">
-            <span class="value-num">04</span>
-            <p>和不同方向的人沟通没障碍，能把事聊明白</p>
-        </div>
+    <div class="wordcloud fade-in">
+        <span class="wc-tag wc-l" style="--delay: 0s; --x: 8%; --y: 20%;">拆解问题</span>
+        <span class="wc-tag wc-m" style="--delay: 0.8s; --x: 55%; --y: 8%;">搞清每一层</span>
+        <span class="wc-tag wc-s" style="--delay: 1.6s; --x: 30%; --y: 50%;">先交付再说</span>
+        <span class="wc-tag wc-m" style="--delay: 0.4s; --x: 72%; --y: 42%;">跨团队拉通</span>
+        <span class="wc-tag wc-s" style="--delay: 1.2s; --x: 15%; --y: 75%;">不接受黑箱</span>
+        <span class="wc-tag wc-l" style="--delay: 2.0s; --x: 48%; --y: 68%;">95分不如能跑</span>
+        <span class="wc-tag wc-m" style="--delay: 0.6s; --x: 82%; --y: 70%;">简单 > 复杂</span>
+        <span class="wc-tag wc-s" style="--delay: 1.8s; --x: 65%; --y: 15%;">逻辑优先</span>
+        <span class="wc-tag wc-s" style="--delay: 1.0s; --x: 3%; --y: 45%;">动手造轮子</span>
+        <span class="wc-tag wc-m" style="--delay: 1.4s; --x: 40%; --y: 30%;">把事聊明白</span>
     </div>
 </section>
 

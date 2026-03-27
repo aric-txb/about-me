@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me ｜ 田学博</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* SF Pro is system font, no import needed */
 
         * {
             margin: 0;
@@ -37,11 +37,12 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'PingFang SC', 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         /* ========== NAV ========== */
@@ -267,6 +268,93 @@
         }
 
 
+
+        /* ========== LIGHT MODE ========== */
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-tertiary: #86868b;
+            --accent: #0071e3;
+            --accent-hover: #0077ed;
+            --border: rgba(0, 0, 0, 0.06);
+            --border-hover: rgba(0, 0, 0, 0.12);
+            --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(255, 255, 255, 0.72);
+            border-bottom-color: rgba(0, 0, 0, 0.06);
+        }
+
+        [data-theme="light"] .nav-links a {
+            color: #6e6e73;
+        }
+
+        [data-theme="light"] .nav-links a:hover {
+            color: #1d1d1f;
+        }
+
+        [data-theme="light"] .hero::before {
+            background: radial-gradient(ellipse at 30% 50%, rgba(0, 113, 227, 0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 50%, rgba(191, 90, 242, 0.04) 0%, transparent 50%);
+        }
+
+        [data-theme="light"] .section-title {
+            background: linear-gradient(135deg, #1d1d1f 0%, #6e6e73 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        [data-theme="light"] .skill-analogy {
+            border-left-color: rgba(0, 113, 227, 0.3) !important;
+        }
+
+        [data-theme="light"] .tag {
+            color: #0071e3;
+            background: rgba(0, 113, 227, 0.08);
+            border-color: rgba(0, 113, 227, 0.15);
+        }
+
+        [data-theme="light"] .scroll-hint svg {
+            fill: #86868b;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 200;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-card);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.08);
+            border-color: var(--border-hover);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
         /* ========== TIMELINE ========== */
         .timeline {
             position: relative;
@@ -344,7 +432,7 @@
         }
 
         .skill-card:hover {
-            transform: translateY(-6px);
+            transform: scale(1.02);
             border-color: var(--border-hover);
             box-shadow: var(--shadow-hover);
         }
@@ -397,7 +485,7 @@
 
         .trait-item:hover {
             border-color: var(--border-hover);
-            transform: translateY(-3px);
+            transform: scale(1.01);
         }
 
         .trait-item .trait-icon {
@@ -430,13 +518,13 @@
         .project-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             transition: all 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-4px);
+            transform: scale(1.02);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             border-color: rgba(255, 255, 255, 0.15);
         }
@@ -504,7 +592,7 @@
             background: rgba(10, 132, 255, 0.1);
             border: 1px solid rgba(10, 132, 255, 0.2);
             padding: 4px 10px;
-            border-radius: 20px;
+            border-radius: 16px;
             font-weight: 500;
         }
 
@@ -526,7 +614,7 @@
         }
 
         .hobby-card:hover {
-            transform: translateY(-6px);
+            transform: scale(1.02);
             border-color: var(--border-hover);
             box-shadow: var(--shadow-hover);
         }
@@ -588,7 +676,7 @@
         }
 
         .contact-card:hover {
-            transform: translateY(-4px);
+            transform: scale(1.02);
             border-color: var(--accent);
             box-shadow: var(--shadow-hover);
         }
@@ -631,6 +719,21 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+
+        /* ========== PRESS FEEDBACK ========== */
+        .skill-card:active,
+        .trait-item:active,
+        .hobby-card:active,
+        .contact-card:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+
+        .project-card:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
         }
 
         /* ========== RESPONSIVE ========== */
@@ -856,6 +959,27 @@
 
 <!-- SCRIPTS -->
 <script>
+    // Theme toggle
+    function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.querySelector('.theme-icon');
+        if (html.getAttribute('data-theme') === 'light') {
+            html.removeAttribute('data-theme');
+            icon.textContent = '🌙';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            html.setAttribute('data-theme', 'light');
+            icon.textContent = '☀️';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Restore saved theme
+    if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.querySelector('.theme-icon').textContent = '☀️';
+    }
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -876,5 +1000,10 @@
     });
 </script>
 
+
+<!-- THEME TOGGLE -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+    <span class="theme-icon">🌙</span>
+</button>
 </body>
 </html>

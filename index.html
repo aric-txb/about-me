@@ -15,16 +15,21 @@
 
         :root {
             --bg-primary: #000000;
-            --bg-secondary: #1d1d1f;
-            --bg-card: rgba(29, 29, 31, 0.8);
+            --bg-secondary: #0a0a0a;
+            --bg-card: rgba(22, 22, 24, 0.7);
             --text-primary: #f5f5f7;
-            --text-secondary: #a1a1a6;
+            --text-secondary: #86868b;
+            --text-tertiary: #6e6e73;
             --accent: #0a84ff;
             --accent-hover: #409cff;
+            --accent-warm: #bf5af2;
             --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --border: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.3), 0 0 1px rgba(255, 255, 255, 0.05);
+            --shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.4), 0 0 1px rgba(255, 255, 255, 0.1);
         }
 
         html {
@@ -192,7 +197,7 @@
         section {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 120px 24px;
+            padding: 140px 24px;
         }
 
         .section-title {
@@ -200,13 +205,18 @@
             font-weight: 700;
             letter-spacing: -0.03em;
             margin-bottom: 12px;
+            background: linear-gradient(135deg, #f5f5f7 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .section-subtitle {
-            font-size: 20px;
+            font-size: 22px;
             color: var(--text-secondary);
-            font-weight: 300;
-            margin-bottom: 60px;
+            font-weight: 500;
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
         }
 
         /* ========== ABOUT ========== */
@@ -239,20 +249,21 @@
         .info-list li {
             display: flex;
             align-items: baseline;
-            padding: 12px 0;
+            padding: 14px 0;
             border-bottom: 1px solid var(--border);
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .info-list .label {
-            color: var(--text-secondary);
+            color: var(--text-tertiary);
             min-width: 80px;
-            font-size: 14px;
+            font-size: 13px;
+            letter-spacing: 0.04em;
         }
 
         .info-list .value {
             color: var(--text-primary);
-            font-weight: 500;
+            font-weight: 400;
         }
 
 
@@ -324,15 +335,18 @@
         .skill-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 32px 28px;
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            padding: 36px 30px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
         .skill-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-hover);
         }
 
         .skill-card .skill-icon {
@@ -356,11 +370,11 @@
 
         .skill-card .skill-analogy {
             font-size: 13px;
-            color: var(--accent);
-            opacity: 0.8;
+            color: var(--text-tertiary);
             font-style: italic;
             padding-left: 12px;
-            border-left: 2px solid var(--accent);
+            border-left: 2px solid rgba(10, 132, 255, 0.3);
+            margin-top: 4px;
         }
 
         .traits-grid {
@@ -373,13 +387,17 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 24px 20px;
+            padding: 28px 20px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
         .trait-item:hover {
-            border-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
         }
 
         .trait-item .trait-icon {
@@ -500,16 +518,17 @@
         .hobby-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 20px;
+            border-radius: 16px;
             padding: 40px 28px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--shadow-card);
         }
 
         .hobby-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-hover);
         }
 
         .hobby-icon {
@@ -559,17 +578,19 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 28px;
+            padding: 32px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             text-decoration: none;
             color: var(--text-primary);
             display: block;
+            box-shadow: var(--shadow-card);
         }
 
         .contact-card:hover {
             transform: translateY(-4px);
             border-color: var(--accent);
+            box-shadow: var(--shadow-hover);
         }
 
         .contact-icon {
@@ -596,8 +617,8 @@
         }
 
         footer p {
-            font-size: 14px;
-            color: var(--text-secondary);
+            font-size: 13px;
+            color: var(--text-tertiary);
         }
 
         /* ========== ANIMATIONS ========== */
@@ -648,7 +669,7 @@
         <div class="nav-links">
             <a href="#about">关于</a>
             <a href="#timeline">经历</a>
-            <a href="#skills">技能</a>
+            <a href="#skills">项目</a>
             <a href="#projects">项目</a>
             <a href="#hobbies">爱好</a>
             <a href="#contact">联系</a>
@@ -718,8 +739,7 @@
 <!-- SKILLS -->
 <section id="skills">
     <div class="fade-in">
-        <h2 class="section-title">🔧 我在做什么</h2>
-        <p class="section-subtitle">让不熟悉自动驾驶的朋友也能理解我的工作</p>
+        <h2 class="section-title">📁 项目经历</h2>
     </div>
     <div class="skills-grid">
         <div class="skill-card fade-in">
@@ -748,7 +768,7 @@
         </div>
     </div>
     <div class="fade-in">
-        <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 24px; letter-spacing: -0.02em;">💡 我的工作方式</h3>
+        <h3 class="section-subtitle">💡 我的工作方式</h3>
     </div>
     <div class="traits-grid">
         <div class="trait-item fade-in">
@@ -770,37 +790,6 @@
     </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-    <div class="fade-in">
-        <h2 class="section-title">📁 项目经历</h2>
-    </div>
-    <div class="projects-grid">
-        <div class="project-card fade-in">
-            <div class="project-cover cover-1">🚗</div>
-            <div class="project-info">
-                <div class="period">2022 — 2024</div>
-                <h3>车端感知后融合</h3>
-                <ul>
-                    <li>从 0-1 设计并搭建 L2 辅助驾驶车端后融合模块</li>
-                    <li>迭代优化并交付用户</li>
-                </ul>
-            </div>
-        </div>
-        <div class="project-card fade-in">
-            <div class="project-cover cover-2">🤖</div>
-            <div class="project-info">
-                <div class="period">2025 — 2026</div>
-                <h3>Autolabel OD/LD 优化交付</h3>
-                <ul>
-                    <li>主导 Autolabel OD 重构优化，有效提升 OD 数据交付质量</li>
-                    <li>推动 Autolabel OD 数据在联合训练中的使用，为自驾车端模型赋能</li>
-                    <li>支持 Autolabel LD 数据交付</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- HOBBIES -->
 <section id="hobbies">

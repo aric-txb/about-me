@@ -304,13 +304,17 @@
         }
 
         [data-theme="light"] .section-title {
-            background: linear-gradient(135deg, #1d1d1f 0%, #6e6e73 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            background: none;
+            -webkit-text-fill-color: #1d1d1f;
+            background-clip: unset;
         }
 
-        [data-theme="light"] .skill-analogy {
+        [data-theme="light"] .trait-icon,
+    [data-theme="light"] .skill-icon { 
+        filter: none;
+    }
+
+    [data-theme="light"] .skill-analogy {
             border-left-color: rgba(0, 113, 227, 0.3) !important;
         }
 
@@ -773,6 +777,7 @@
             <a href="#about">关于</a>
             <a href="#timeline">经历</a>
             <a href="#skills">项目</a>
+            <a href="#workstyle">方式</a>
             <a href="#projects">项目</a>
             <a href="#hobbies">爱好</a>
             <a href="#contact">联系</a>
@@ -870,8 +875,12 @@
             <div class="skill-analogy">造零件不难，难的是让整车跑起来</div>
         </div>
     </div>
+</section>
+
+<!-- WORK STYLE -->
+<section id="workstyle">
     <div class="fade-in">
-        <h3 class="section-subtitle">💡 我的工作方式</h3>
+        <h2 class="section-title">💡 我的工作方式</h2>
     </div>
     <div class="traits-grid">
         <div class="trait-item fade-in">
